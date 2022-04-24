@@ -1,5 +1,6 @@
 const app = require("./app");
 const http = require("http");
+var figlet = require('figlet');
 
 const onError = error => {
   if (error.syscall !== "listen") {
@@ -19,7 +20,14 @@ const onError = error => {
 const onListening = () => {
   const addr = server.address();
   const bind = typeof port === "string" ? "pipe " + port : "port " + port;
-  console.log("Listening on " + addr.address + ":" + bind);
+  figlet('ScreenScore', function(err, data) {
+    if (err) {
+        console.log('Something went wrong...');
+        console.dir(err);
+        return;
+    }
+    console.log('\x1b[35m', data, '\x1b[0m');
+});
 };
 
 const port = 3000;
