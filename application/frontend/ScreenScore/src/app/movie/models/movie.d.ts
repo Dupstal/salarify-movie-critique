@@ -14,6 +14,6 @@ export interface Movie {
       editing: number,
       music: number,
       visualEffects: number,
-      screenPlay: number
+      screenplay: number
     }
 }

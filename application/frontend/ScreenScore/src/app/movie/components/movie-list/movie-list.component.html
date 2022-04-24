@@ -2,7 +2,8 @@
     <div id="card-container">
         <app-movie-card
             *ngFor="let movie of movies$ | async"
-            [movie]="movie"></app-movie-card>
+            [movie]="movie"
+            (click)="openInfoCard(movie)"></app-movie-card>
     </div>
     <div id="pagination-container">
         <p [class.disabled]="currentPage === 0"
@@ -20,3 +21,8 @@
             Next</p>
     </div>
 </div>
+<app-info-card
+    *ngIf="infoCardOpen"
+    (closeInfoCardEvent)="closeInfoCard($event)"
+    [selectedMovie]="selectedMovie"
+    ></app-info-card>

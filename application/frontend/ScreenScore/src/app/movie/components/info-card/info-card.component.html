@@ -1,0 +1,44 @@
+<div class="container">
+    <div id="background-overlay" (click)="closeEditor()"></div>
+    <div id="card-wrapper" [@entry]>
+        <div id="card">
+            <div id="header">
+                <div id="poster"
+                    [style.backgroundImage]="'url(' + selectedMovie.imgUrl + ')'"></div>
+                <div id="info-col">
+                    <p id="title">{{ selectedMovie.name }} ({{ selectedMovie.year }})</p>
+                    <p class="sub"><span>Director:</span> {{ selectedMovie.director }}</p>
+                    <p class="sub"><span>Stars:</span> {{ selectedMovie.stars }}</p>
+                    <p class="sub"><span>Writers:</span> {{ selectedMovie.writers }}</p>
+                </div>
+            </div>
+            <p id="review"><span>Review:</span> {{ selectedMovie.review }}</p>
+            <hr>
+            <div id="score">
+                <div id="ratings-col">
+                    <p class="sub"><span>Directing:</span> {{ selectedMovie.ratings.directing }}/5</p>
+                    <p class="sub"><span>Acting:</span> {{ selectedMovie.ratings.acting }}/5</p>
+                    <p class="sub"><span>Costume design:</span> {{ selectedMovie.ratings.costumeDesign }}/5</p>
+                    <p class="sub"><span>Editing:</span> {{ selectedMovie.ratings.editing }}/5</p>
+                    <p class="sub"><span>Music:</span> {{ selectedMovie.ratings.music }}/5</p>
+                    <p class="sub"><span>Visual Effects:</span> {{ selectedMovie.ratings.visualEffects }}/5</p>
+                    <p class="sub"><span>Screenplay:</span> {{ selectedMovie.ratings.screenplay }}/5</p>
+                </div>
+                <div id="screenscore-col">
+                    <div id="screenscore-square">
+                        <p id="title">SCREENSCORE</p>
+                        <div id="circle">
+                            <p id="score">{{ selectedMovie | getRatingsScore }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="bottom">
+            <div id="action-bar">
+                <p class="button">Edit</p>
+                <p class="button destructive">Delete</p>
+                <p class="button destructive">Close</p>
+            </div>
+        </div>
+    </div>
+</div>
