@@ -33,6 +33,20 @@
                 color: #7B7C8D;
                 cursor: pointer;
             }
+            input[type="text"] {
+                width: 100%;
+                outline: none;
+                box-sizing: border-box;
+                border: none;
+                display: block;
+                font-size: 0.75rem;
+                color: white;
+                background: transparent;
+                font-family: "Poppins", sans-serif;
+                &::placeholder {
+                    color: #7B7C8D;
+                }
+            }
         }
         #col-2 {
             display: flex;

@@ -3,7 +3,8 @@
         <div id="col-1">
             <p id="logo">SCREENSCORE</p>
             <div class="divider"></div>
-            <p id="search">Search</p>
+            <input type="text" placeholder="Search for a movie" #searchInput
+                (keyup)="searchTermChange.next(searchInput.value)" />
         </div>
         <div id="col-2">
             <p>Home</p>

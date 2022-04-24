@@ -5,17 +5,40 @@ let movies = JSON.parse(tempData);
 
 exports.getMovies = async (req, res, next) => {
   try {
+    let moviesToReturn = [];
+    let searchTerm = req.query.searchTerm;
+    if (searchTerm && searchTerm != '') {
+      moviesToReturn = movies.filter(movie => movie.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    } else {
+      moviesToReturn = movies;
+    }
+
     let page = +req.query.page;
     if (!page) {
       page = 0;
     }
-
-    const moviesToReturn = movies.slice(page * 6, (page + 1) * 6);
-
+    moviesToReturn = moviesToReturn.slice(page * 6, (page + 1) * 6);
+    
     return res.status(200).json(moviesToReturn);
+
+    
   } catch (error) {
-    console.log(error);
     return res.status(500).send();
+  }
+}
+
+exports.getMovie = async (req, res, next) => {
+  try {
+    const id = +req.params.id;
+  
+    let fetchedMovie = movies.find(movie => movie.id === id);
+    if (!fetchedMovie) {
+      return res.status(404).send();
+    } else {
+      return res.status(200).json(fetchedMovie);
+    }
+  } catch (error) {
+    return res.status(400).send();  
   }
 }
 
