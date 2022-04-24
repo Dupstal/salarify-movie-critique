@@ -1,12 +1,22 @@
 <div id="container">
     <div id="card-container">
-        <app-movie-card *ngFor="let item of [0, 1, 2, 3, 4, 5]"></app-movie-card>
+        <app-movie-card
+            *ngFor="let movie of movies$ | async"
+            [movie]="movie"></app-movie-card>
     </div>
     <div id="pagination-container">
-        <p>Previous</p>
+        <p [class.disabled]="currentPage === 0"
+            (click)="previousPage()">
+            Previous</p>
         <div class="divider"></div>
-        <p *ngFor="let item of [1, 2, 3]">{{ item }}</p>
+        <p class="pagination-number"
+            *ngFor="let page of numberOfPages | getPagesLength"
+            [class.active]="page === currentPage + 1"
+            (click)="goToPage(page)"
+        >{{ page }}</p>
         <div class="divider"></div>
-        <p>Next</p>
+        <p [class.disabled]="currentPage === numberOfPages - 1"
+            (click)="nextPage()">
+            Next</p>
     </div>
 </div>

@@ -1,8 +1,10 @@
 <div id="container">
-    <div id="poster"></div>
-    <p id="title">Trainspotting</p>
+    <div
+    id="poster"
+    [style.backgroundImage]="'url(' + movie.imgUrl + ')'"></div>
+    <p id="title">{{ movie.name }}</p>
     <div id="data">
-        <p id="release-date">1994</p>
+        <p id="release-date">{{ movie.year }}</p>
         <p id="rating">9.6</p>
     </div>
 </div>

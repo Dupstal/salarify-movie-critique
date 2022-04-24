@@ -9,6 +9,7 @@
     #card-container {
         display: grid;
         grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(2, 1fr);
         gap: 32px;
         margin-bottom: 32px;
     }
@@ -26,8 +27,17 @@
             font-size: 14px;
             line-height: 21px;
             color: #FFFFFF;
-            &:nth-child(2n) {
-                margin: 0 20px;
+            cursor: pointer;
+            &:nth-of-type(2n) {
+                margin-right: 20px;
+            }
+            &.active {
+                cursor: not-allowed;
+                color: #EE387A;
+            }
+            &.disabled {
+                cursor: not-allowed;
+                color: #7B7C8D;
             }
         }
         .divider {

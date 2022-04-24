@@ -12,7 +12,9 @@
         height: 200px;
         border-radius: 8px;
         margin-bottom: 12px;
-        background: red;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
     }
     #title {
         font-weight: 400;
