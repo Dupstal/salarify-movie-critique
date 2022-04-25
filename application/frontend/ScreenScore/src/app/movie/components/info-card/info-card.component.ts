@@ -17,24 +17,15 @@ export const ENTRY_ANIMATION = trigger("entry", [
   animations: [ENTRY_ANIMATION]
 })
 export class InfoCardComponent implements OnInit {
-
-  form: FormGroup;
-  editMode: boolean = false;
   
   @Input() selectedMovie!: Movie;
-  @Output() closeInfoCardEvent = new EventEmitter<undefined>();
+  @Output() closeCardEvent = new EventEmitter<undefined>();
   @Output() deleteMovieEvent = new EventEmitter<number>();
 
   constructor() {
-    this.form = new FormGroup({
-      name: new FormControl(null, { validators: [Validators.required] }),
-    });
   }
 
   ngOnInit(): void {
-    if (this.selectedMovie) {
-      this.editMode = true;
-    }
   }
 
   @HostListener('window:keydown', ['$event'])
@@ -51,12 +42,6 @@ export class InfoCardComponent implements OnInit {
   }
 
   closeCard() {
-    if (this.form.dirty) {
-      if (confirm('You have unsaved changes. Are you sure you want to close?')) {
-        this.form.reset();
-        this.closeInfoCardEvent.emit(undefined);
-      }
-    } else this.closeInfoCardEvent.emit(undefined);
+    this.closeCardEvent.emit(undefined);
   }
-
 }

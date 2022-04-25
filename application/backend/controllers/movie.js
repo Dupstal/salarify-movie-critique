@@ -42,6 +42,38 @@ exports.getMovie = async (req, res, next) => {
   }
 }
 
+exports.addMovie = async (req, res, next) => {
+  try {
+    const movie = {
+      id: movies.length + 1,
+      name: req.body.name,
+      year: req.body.year,
+      director: req.body.director,
+      stars: req.body.stars,
+      writers: req.body.writers,
+      imgUrl: req.body.imgUrl,
+      review: req.body.review,
+      ratings: {
+        directing: req.body.directing,
+        acting: req.body.acting,
+        costumeDesign: req.body.costumeDesign,
+        editing: req.body.editing,
+        music: req.body.music,
+        visualEffects: req.body.visualEffects,
+        screenplay: req.body.screenplay
+      }
+    };
+
+    movies.push(movie);
+    // fs.writeFileSync('../../data/data.json', JSON.stringify(movies));
+    
+    return res.status(201).send();
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send();
+  }
+};
+
 exports.deleteMovie = async (req, res, next) => {
   try {
     const id = +req.params.id;

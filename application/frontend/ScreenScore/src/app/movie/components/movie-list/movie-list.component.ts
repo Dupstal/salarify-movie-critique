@@ -15,6 +15,7 @@ export class MovieListComponent implements OnInit {
   currentPage = 0;
   searchTerm: string = '';
   infoCardOpen: boolean = false;
+  editorCardOpen: boolean = false;
   selectedMovie!: Movie;
 
   subscription: Subscription;
@@ -60,6 +61,25 @@ export class MovieListComponent implements OnInit {
 
   closeInfoCard(): void {
     this.infoCardOpen = false;
+  }
+
+  openEditorCard(movie?: Movie): void {
+    if (movie) {
+      this.selectedMovie = movie;
+    }
+    this.editorCardOpen = true;
+  }
+
+  closeEditorCard(): void {
+    this.editorCardOpen = false;
+  }
+
+  addMovie(movie: Movie): void {
+    this.moviesService.addMovie(movie).pipe(take(1)).subscribe(() => {
+      this.movies$ = this.moviesService.getMovies(this.currentPage, this.searchTerm);
+      this.closeEditorCard();
+      this.refreshNumberOfPages();
+    });
   }
 
   deleteMovie(id: number) {

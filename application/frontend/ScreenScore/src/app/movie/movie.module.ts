@@ -7,6 +7,8 @@ import { GetPagesLengthPipe } from './pipes/get-pages-length.pipe';
 import { GetRatingsScorePipe } from './pipes/get-ratings-score.pipe';
 import { MoviesService } from './services/movies.service';
 import { InfoCardComponent } from './components/info-card/info-card.component';
+import { EditorCardComponent } from './components/editor-card/editor-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { InfoCardComponent } from './components/info-card/info-card.component';
     MovieListComponent,
     GetPagesLengthPipe,
     GetRatingsScorePipe,
-    InfoCardComponent
+    InfoCardComponent,
+    EditorCardComponent
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     MoviesService

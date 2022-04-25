@@ -22,6 +22,10 @@ export class MoviesService {
     return this.http.get<Movie[]>(this.apiUrl + '/movie', { params: { page, searchTerm } });
   }
 
+  addMovie(movie: Movie): Observable<Movie> {
+    return this.http.post<Movie>(this.apiUrl + '/movie', movie);
+  }
+
   deleteMovie(id: number): Observable<boolean> {
     return this.http.delete<boolean>(this.apiUrl + '/movie/' + id);
   }

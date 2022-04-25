@@ -1,4 +1,5 @@
 <div id="container">
+    <p (click)="openEditorCard()">Add New</p>
     <div id="card-container">
         <app-movie-card
             *ngFor="let movie of movies$ | async"
@@ -24,6 +25,12 @@
 <app-info-card
     *ngIf="infoCardOpen"
     [selectedMovie]="selectedMovie"
-    (closeInfoCardEvent)="closeInfoCard()"
+    (closeCardEvent)="closeInfoCard()"
     (deleteMovieEvent)="deleteMovie($event)">
-    ></app-info-card>
+    </app-info-card>
+<app-editor-card
+    *ngIf="editorCardOpen"
+    [selectedMovie]="selectedMovie"
+    (closeCardEvent)="closeEditorCard()"
+    (addMovieEvent)="addMovie($event)">
+    </app-editor-card>

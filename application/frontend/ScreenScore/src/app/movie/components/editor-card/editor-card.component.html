@@ -1,0 +1,34 @@
+<div class="container">
+    <div id="background-overlay" (click)="closeCard()"></div>
+    <div id="card-wrapper" [@entry]>
+        <div id="card" [formGroup]="form">
+            <p id="title">Edit mode</p>
+            <hr class="top">
+            <div id="short-texts">
+                <label>Title<span>*</span><input type="text" formControlName="name" placeholder="The lorem ipsum II."></label>
+                <label>Year<span>*</span><input type="text" formControlName="year" placeholder="2021"></label>
+                <label>Director<span>*</span><input type="text" formControlName="director" placeholder="James D. Williamson"></label>
+                <label>Stars<span>*</span><input type="text" formControlName="stars" placeholder="Alexis D. O'Connor, Ewan McGregor"></label>
+                <label>Writers<span>*</span><input type="text" formControlName="writers" placeholder="Doyle C. Berry"></label>
+                <label>Image URL<span>*</span><input type="text" formControlName="imgUrl" placeholder="Paste the link here"></label>
+            </div>
+            <label>Review<span>*</span><textarea formControlName="review" placeholder="Your review goes here" rows="4"></textarea></label>
+            <hr>
+            <div class="ratings">
+                <p id="ratings-label">Ratings</p>
+                <label>Directing<span>*</span><input type="number" formControlName="directing" min="1" max="5"></label>
+                <label>Acting<span>*</span><input type="number" formControlName="acting" min="1" max="5"></label>
+                <label>Costume Design<span>*</span><input type="number" formControlName="costumeDesign" min="1" max="5"></label>
+                <label>Editing<span>*</span><input type="number" formControlName="editing" min="1" max="5"></label>
+                <label>Music<span>*</span><input type="number" formControlName="music" min="1" max="5"></label>
+                <label>Visual Effects<span>*</span><input type="number" formControlName="visualEffects" min="1" max="5"></label>
+                <label>Screenplay<span>*</span><input type="number" formControlName="screenplay" min="1" max="5"></label>
+            </div>
+            <hr>
+            <div id="action-bar">
+                <p class="button destructive" (click)="closeCard()">Close</p>
+                <p class="button" [style.opacity]="form.valid ? 1 : 0.1" (click)="addMovie()">Save</p>
+            </div>
+        </div>
+    </div>
+</div>
