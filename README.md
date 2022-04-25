@@ -1,4 +1,4 @@
-![enter image description here](https://i.imgur.com/06Dhh2R.png)
+![SCREENSCORE](https://i.imgur.com/06Dhh2R.png)
 
 # Welcome to SCREENSCORE™!
 
@@ -25,6 +25,11 @@ The system consists of two parts, the front end, which is written in **Angular**
  3. Run **npm install**.
  4. Start the website with **ng serve -o**.
  5. After it boots up, the application should be running in your default browser.
+
+## Here are some screens
+
+![SCREENSCORE 1](https://i.imgur.com/2LqgbE6.png)
+![SCREENSCORE 2](https://i.imgur.com/vO7icZi.png)
 
 -----
 
