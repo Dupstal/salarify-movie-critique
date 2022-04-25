@@ -1,7 +1,7 @@
 @import '~src/app/shared/styles/variables.scss';
 
 #container {
-    max-height: 350px;
+    max-height: 21.875rem;
     display: flex;
     flex-direction: column;
     cursor: pointer;
@@ -11,17 +11,17 @@
     }
     #poster {
         width: 100%;
-        height: 200px;
-        border-radius: 8px;
-        margin-bottom: 12px;
+        height: 12.5rem;
+        border-radius: 0.5rem;
+        margin-bottom: 0.75rem;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
     }
     #title {
         font-weight: 400;
-        font-size: 13px;
-        line-height: 21px;
+        font-size: 0.8125rem;
+        line-height: 1.3125rem;
         color: white;
         margin: 0;
     }
@@ -32,8 +32,8 @@
         p {
             margin: 0;
             font-weight: 400;
-            font-size: 13px;
-            line-height: 21px;
+            font-size: 0.8125rem;
+            line-height: 1.3125rem;
             color: $grey;
         }
     }

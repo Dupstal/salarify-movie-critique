@@ -16,7 +16,7 @@
         cursor: not-allowed;     
     }
     #card-wrapper {
-        width: 800px;
+        width: 50rem;
         height: 100vh;
         position: absolute;
         left: 50%;
@@ -25,45 +25,45 @@
         overflow-y: scroll;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        padding: 80px 0px;
+        padding: 5rem 0rem;
         box-sizing: border-box;
         #card {
             width: 100%;
             background: white;
-            border-radius: 12px;
+            border-radius: 0.75rem;
             display: flex;
             flex-direction: column;
-            padding: 42px 42px 24px;
+            padding: 2.625rem 2.625rem 1.5rem;
             box-sizing: border-box;
             #header {
                 display: flex;
-                margin-bottom: 48px;
+                margin-bottom: 3rem;
                 #poster {
-                    width: 180px;
-                    height: 240px;
-                    border-radius: 8px;
+                    width: 11.25rem;
+                    height: 15rem;
+                    border-radius: 0.5rem;
                     background-repeat: no-repeat;
                     background-size: cover;
                     background-position: center;
-                    margin-right: 32px;
+                    margin-right: 2rem;
                 }
                 #info-col {
                     display: flex;
                     flex-direction: column;
-                    max-width: 450px;
+                    max-width: 28.125rem;
                     #title {
                         font-style: normal;
                         font-weight: 600;
-                        font-size: 24px;
-                        line-height: 36px;
+                        font-size: 1.5rem;
+                        line-height: 2.25rem;
                         color: black;
-                        margin: 0 0 20px;
+                        margin: 0 0 1.25rem;
                     }
                     .sub {
-                        font-size: 14px;
-                        line-height: 21px;
+                        font-size: 0.875rem;
+                        line-height: 1.3125rem;
                         color: black;
-                        margin: 0 0 10px;
+                        margin: 0 0 0.625rem;
                         span {
                             font-weight: 600;
                         }
@@ -71,8 +71,8 @@
                 }
             }
             #review {
-                font-size: 14px;
-                line-height: 21px;
+                font-size: 0.875rem;
+                line-height: 1.3125rem;
                 color: black;
                 margin: 0;
                 span {
@@ -80,13 +80,13 @@
                 }
             }
             hr {
-                margin: 40px 0;
+                margin: 2.5rem 0;
                 width: 100%;
                 border: none;
-                height: 1px;
+                height: 0.0625rem;
                 background-color: $light_grey;
                 &.bottom {
-                    margin: 40px 0 20px;
+                    margin: 2.5rem 0 1.25rem;
                 }
             }
             #score {
@@ -94,10 +94,10 @@
                 justify-content: space-between;
                 #ratings-col {
                     .sub {
-                        font-size: 16px;
-                        line-height: 21px;
+                        font-size: 1rem;
+                        line-height: 1.3125rem;
                         color: black;
-                        margin: 0 0 16px;
+                        margin: 0 0 1rem;
                         span {
                             font-weight: 600;
                         }
@@ -108,34 +108,34 @@
                     flex-direction: column;
                     justify-content: flex-end;
                     #screenscore-square {
-                        width: 200px;
-                        height: 200px;
+                        width: 12.5rem;
+                        height: 12.5rem;
                         overflow: hidden;
                         position: relative;
-                        border: 1px solid #E5E5E5;
+                        border: 0.0625rem solid #E5E5E5;
                         box-sizing: border-box;
                         text-align: center;
                         #title {
                             font-weight: 600;
-                            font-size: 20px;
-                            line-height: 30px;
+                            font-size: 1.25rem;
+                            line-height: 1.875rem;
                             color: $screenScoreBrand;
                         }
                         #circle {
                             width: 100%;
                             height: 100%;
                             position: absolute;
-                            top: 64px;
-                            left: 42px;
+                            top: 4rem;
+                            left: 2.625rem;
                             border-radius: 50%;
                             background-color: $screenScoreBrand;
                             #score {
                                 position: absolute;
-                                bottom: 19px;
-                                left: 36px;
+                                bottom: 1.1875rem;
+                                left: 2.25rem;
                                 font-weight: 400;
-                                font-size: 58px;
-                                line-height: 87px;
+                                font-size: 3.625rem;
+                                line-height: 5.4375rem;
                                 color: white;
                             }
                         }
@@ -147,11 +147,11 @@
                 justify-content: flex-end;
                 .button {
                     font-weight: 400;
-                    font-size: 14px;
-                    line-height: 21px;
+                    font-size: 0.875rem;
+                    line-height: 1.3125rem;
                     color: $grey;
                     cursor: pointer;
-                    margin: 0 0 0 32px;
+                    margin: 0 0 0 2rem;
                     &.destructive {
                         color: $screenScoreBrand;
                     }
@@ -163,5 +163,5 @@
 
 ::-webkit-scrollbar {
     -webkit-appearance: none;
-    width: 7px;
+    width: 0.4375rem;
 }
