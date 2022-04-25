@@ -9,7 +9,10 @@
         <div id="col-2">
             <p (click)="changeLanguage('hu')">HU</p>
             <p (click)="changeLanguage('en')">EN</p>
-            <p (click)="openMovieEditor()">{{ 'ADD_MOVIE' | translate }}</p>
+            <p
+                (click)="openMovieEditor()"
+                data-cy="add-movie">
+                {{ 'ADD_MOVIE' | translate }}</p>
         </div>
     </div>
 </div>
