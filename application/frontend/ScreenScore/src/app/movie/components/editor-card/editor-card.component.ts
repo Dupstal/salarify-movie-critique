@@ -89,7 +89,6 @@ export class EditorCardComponent implements OnInit {
     }
   }
 
-
   closeCard() {
     if (this.form.dirty) {
       if (confirm('You have unsaved changes. Are you sure you want to close?')) {

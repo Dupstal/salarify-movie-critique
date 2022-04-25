@@ -1,4 +1,4 @@
-<div class="container">
+<div id="container">
     <div id="background-overlay" (click)="closeCard()"></div>
     <div id="card-wrapper" [@entry]>
         <div id="card" [formGroup]="form">
@@ -29,6 +29,7 @@
                 <p class="button destructive" (click)="closeCard()">{{ 'MOVIE_CLOSE' | translate }}</p>
                 <p
                     class="button"
+                    data-cy="save-button"
                     [class.disabled]="!form.valid"
                     (click)="editMode ? updateMovie() : addMovie()"
                     >{{ 'MOVIE_SAVE' | translate }}</p>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, debounceTime } from 'rxjs';
+import { BehaviorSubject, debounceTime, Subscription } from 'rxjs';
 import { MoviesService } from 'src/app/movie/services/movies.service';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
@@ -7,18 +7,17 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 
   searchTermChange = new BehaviorSubject<string>("");
   
+  searchTermSubscription: Subscription;
+
   constructor(
     private readonly translate: TranslateService,
     private readonly moviesService: MoviesService
   ) {
-  }
-
-  ngOnInit(): void {
-    this.searchTermChange.pipe(debounceTime(300)).subscribe(searchTerm => {
+    this.searchTermSubscription = this.searchTermChange.pipe(debounceTime(300)).subscribe(searchTerm => {
       this.moviesService.searchMovies(searchTerm);
     });
   }
@@ -33,6 +32,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnDestroy() {
     this.searchTermChange.next("");
+    this.searchTermSubscription.unsubscribe();
   }
 
 }

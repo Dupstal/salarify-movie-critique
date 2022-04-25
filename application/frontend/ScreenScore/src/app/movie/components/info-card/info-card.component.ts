@@ -15,7 +15,7 @@ export const ENTRY_ANIMATION = trigger("entry", [
   styleUrls: ['./info-card.component.scss'],
   animations: [ENTRY_ANIMATION]
 })
-export class InfoCardComponent implements OnInit {
+export class InfoCardComponent {
   
   @Input() selectedMovie: Movie | undefined;
   @Output() closeCardEvent = new EventEmitter<undefined>();
@@ -23,9 +23,6 @@ export class InfoCardComponent implements OnInit {
   @Output() deleteMovieEvent = new EventEmitter<number>();
 
   constructor() {
-  }
-
-  ngOnInit(): void {
   }
 
   @HostListener('window:keydown', ['$event'])

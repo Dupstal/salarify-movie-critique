@@ -6,6 +6,7 @@ let movies = JSON.parse(tempData);
 exports.getMovies = async (req, res, next) => {
   try {
     let moviesToReturn = [];
+
     let searchTerm = req.query.searchTerm;
     if (searchTerm && searchTerm != '') {
       moviesToReturn = movies.filter(movie => movie.name.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -20,7 +21,6 @@ exports.getMovies = async (req, res, next) => {
     moviesToReturn = moviesToReturn.slice(page * 6, (page + 1) * 6);
     
     return res.status(200).json(moviesToReturn);
-
     
   } catch (error) {
     return res.status(500).send();
@@ -30,6 +30,9 @@ exports.getMovies = async (req, res, next) => {
 exports.getMovie = async (req, res, next) => {
   try {
     const id = +req.params.id;
+    if (!id) {
+      return res.status(400).send();
+    }
   
     let fetchedMovie = movies.find(movie => movie.id === id);
     if (!fetchedMovie) {
@@ -86,6 +89,9 @@ exports.updateMovie = async (req, res, next) => {
     }
     
     const id = +req.params.id;
+    if (!id) {
+      return res.status(400).send();
+    }
 
     const updatedMovie = {
       id: movies.length + 1,
@@ -119,6 +125,10 @@ exports.updateMovie = async (req, res, next) => {
 exports.deleteMovie = async (req, res, next) => {
   try {
     const id = +req.params.id;
+    if (!id) {
+      return res.status(400).send();
+    }
+
     movies = movies.filter(movie => movie.id !== id);
 
     return res.status(204).json(true);
