@@ -44,6 +44,11 @@ exports.getMovie = async (req, res, next) => {
 
 exports.addMovie = async (req, res, next) => {
   try {
+
+    if (!req.body.name || !req.body.year || !req.body.director || !req.body.stars || !req.body.writers || !req.body.imgUrl || !req.body.review || !req.body.directing || !req.body.acting || !req.body.costumeDesign || !req.body.editing || !req.body.music || !req.body.visualEffects || !req.body.screenplay) {
+      return res.status(400).send();
+    }
+
     const movie = {
       id: movies.length + 1,
       name: req.body.name,
@@ -74,6 +79,45 @@ exports.addMovie = async (req, res, next) => {
   }
 };
 
+exports.updateMovie = async (req, res, next) => {
+  try {
+
+    if (!req.body.name || !req.body.year || !req.body.director || !req.body.stars || !req.body.writers || !req.body.imgUrl || !req.body.review || !req.body.directing || !req.body.acting || !req.body.costumeDesign || !req.body.editing || !req.body.music || !req.body.visualEffects || !req.body.screenplay) {
+      return res.status(400).send();
+    }
+    
+    const id = +req.params.id;
+
+    const updatedMovie = {
+      id: movies.length + 1,
+      name: req.body.name,
+      year: req.body.year,
+      director: req.body.director,
+      stars: req.body.stars,
+      writers: req.body.writers,
+      imgUrl: req.body.imgUrl,
+      review: req.body.review,
+      ratings: {
+        directing: req.body.directing,
+        acting: req.body.acting,
+        costumeDesign: req.body.costumeDesign,
+        editing: req.body.editing,
+        music: req.body.music,
+        visualEffects: req.body.visualEffects,
+        screenplay: req.body.screenplay
+      }
+    };
+
+    movies = movies.map(movie => movie.id === id ? updatedMovie : movie);
+    // fs.writeFileSync('../../data/data.json', JSON.stringify(movies));
+    return res.status(200).send();
+
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send();
+  }
+}
+
 exports.deleteMovie = async (req, res, next) => {
   try {
     const id = +req.params.id;
@@ -90,7 +134,6 @@ exports.getNumberOfPages = async (req, res, next) => {
     const numberOfPages = Math.ceil(movies.length / 6);
     return res.status(200).json(numberOfPages);
   } catch (error) {
-    console.log(error);
     return res.status(500).send();
   }
 }

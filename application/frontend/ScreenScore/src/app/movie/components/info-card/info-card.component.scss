@@ -1,3 +1,5 @@
+@import '~src/app/shared/styles/variables.scss';
+
 .container {
     position: absolute;
     top: 0;
@@ -54,13 +56,13 @@
                         font-weight: 600;
                         font-size: 24px;
                         line-height: 36px;
-                        color: #000000;
+                        color: black;
                         margin: 0 0 20px;
                     }
                     .sub {
                         font-size: 14px;
                         line-height: 21px;
-                        color: #000000;
+                        color: black;
                         margin: 0 0 10px;
                         span {
                             font-weight: 600;
@@ -71,7 +73,7 @@
             #review {
                 font-size: 14px;
                 line-height: 21px;
-                color: #000000;
+                color: black;
                 margin: 0;
                 span {
                     font-weight: 600;
@@ -82,7 +84,7 @@
                 width: 100%;
                 border: none;
                 height: 1px;
-                background-color: #E5E5E5;
+                background-color: $light_grey;
                 &.bottom {
                     margin: 40px 0 20px;
                 }
@@ -94,7 +96,7 @@
                     .sub {
                         font-size: 16px;
                         line-height: 21px;
-                        color: #000000;
+                        color: black;
                         margin: 0 0 16px;
                         span {
                             font-weight: 600;
@@ -117,7 +119,7 @@
                             font-weight: 600;
                             font-size: 20px;
                             line-height: 30px;
-                            color: #EE387A;
+                            color: $screenScoreBrand;
                         }
                         #circle {
                             width: 100%;
@@ -126,7 +128,7 @@
                             top: 64px;
                             left: 42px;
                             border-radius: 50%;
-                            background-color: #EE387A;
+                            background-color: $screenScoreBrand;
                             #score {
                                 position: absolute;
                                 bottom: 19px;
@@ -134,7 +136,7 @@
                                 font-weight: 400;
                                 font-size: 58px;
                                 line-height: 87px;
-                                color: #FFFFFF;
+                                color: white;
                             }
                         }
                     }
@@ -147,11 +149,11 @@
                     font-weight: 400;
                     font-size: 14px;
                     line-height: 21px;
-                    color: #9B9B9B;
+                    color: $grey;
                     cursor: pointer;
                     margin: 0 0 0 32px;
                     &.destructive {
-                        color: #EE387A;
+                        color: $screenScoreBrand;
                     }
                 }
             }

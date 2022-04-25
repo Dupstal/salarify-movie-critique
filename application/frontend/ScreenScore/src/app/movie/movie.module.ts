@@ -9,6 +9,7 @@ import { MoviesService } from './services/movies.service';
 import { InfoCardComponent } from './components/info-card/info-card.component';
 import { EditorCardComponent } from './components/editor-card/editor-card.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule.forChild({
+      extend: true
+    })
   ],
   providers: [
     MoviesService

@@ -1,6 +1,8 @@
+@import '~src/app/shared/styles/variables.scss';
+
 #container {
     width: 100%;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 3.125rem);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,41 +10,43 @@
     background: black;
     #card-container {
         display: grid;
-        grid-template-columns: repeat(3, 150px);
+        grid-template-columns: repeat(3, 9.375rem);
         grid-template-rows: repeat(2, 1fr);
-        gap: 32px;
-        margin-bottom: 32px;
+        gap: 2rem;
+        margin-bottom: 2rem;
     }
     #pagination-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        background: #262A2D;
-        border-radius: 8px;
-        height: 36px;
-        padding: 0 20px;
+        background: $dark_grey;
+        border-radius: 0.5rem;
+        height: 2.25rem;
+        padding: 0 1.25rem;
         box-sizing: border-box;
         p {
             font-weight: 400;
-            font-size: 14px;
-            line-height: 21px;
-            color: #FFFFFF;
-            margin-right: 20px;
+            font-size: 0.875rem;
+            line-height: 1.3125rem;
+            color: white;
             cursor: pointer;
+            &.pagination-number {
+                margin-right: 1.25rem;
+            }
             &.active {
                 cursor: not-allowed;
-                color: #EE387A;
+                color: $screenScoreBrand;
             }
             &.disabled {
                 cursor: not-allowed;
-                color: #7B7C8D;
+                color: $grey;
             }
         }
         .divider {
-            width: 1px;
-            height: 16px;
-            background: #C4C4C4;
-            margin: 0 20px;
+            width: 0.0625rem;
+            height: 1rem;
+            background: $grey;
+            margin: 0 1.25rem;
             &:last-of-type {
                 margin-left: 0;
             }

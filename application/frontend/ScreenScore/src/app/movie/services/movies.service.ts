@@ -14,6 +14,10 @@ export class MoviesService {
   private searchTermSource = new BehaviorSubject('');
   currentSearchTerm = this.searchTermSource.asObservable();
   
+  private openMovieEditorPing = new BehaviorSubject(false);
+  currentOpenMovieEditorPingSource = this.openMovieEditorPing.asObservable();
+  
+
   constructor(
     private readonly http: HttpClient
   ) {}
@@ -26,6 +30,10 @@ export class MoviesService {
     return this.http.post<Movie>(this.apiUrl + '/movie', movie);
   }
 
+  updateMovie(movie: Movie): Observable<Movie> {
+    return this.http.put<Movie>(this.apiUrl + '/movie/' + movie.id, movie);
+  }
+
   deleteMovie(id: number): Observable<boolean> {
     return this.http.delete<boolean>(this.apiUrl + '/movie/' + id);
   }
@@ -36,6 +44,10 @@ export class MoviesService {
 
   searchMovies(searchTerm: string) {
     this.searchTermSource.next(searchTerm);
-    console.log(searchTerm);
   }
+
+  openMovieEditor(open: boolean) {
+    this.openMovieEditorPing.next(open);
+  }
+
 }

@@ -1,5 +1,4 @@
 <div id="container">
-    <p (click)="openEditorCard()">Add New</p>
     <div id="card-container">
         <app-movie-card
             *ngFor="let movie of movies$ | async"
@@ -9,7 +8,7 @@
     <div id="pagination-container">
         <p [class.disabled]="currentPage === 0"
             (click)="previousPage()">
-            Previous</p>
+            {{ 'PREVIOUS' | translate }}</p>
         <div class="divider"></div>
         <p class="pagination-number"
             *ngFor="let page of numberOfPages | getPagesLength"
@@ -19,18 +18,20 @@
         <div class="divider"></div>
         <p [class.disabled]="currentPage === numberOfPages - 1"
             (click)="nextPage()">
-            Next</p>
+            {{ 'NEXT' | translate }}</p>
     </div>
 </div>
 <app-info-card
     *ngIf="infoCardOpen"
     [selectedMovie]="selectedMovie"
     (closeCardEvent)="closeInfoCard()"
-    (deleteMovieEvent)="deleteMovie($event)">
+    (deleteMovieEvent)="deleteMovie($event)"
+    (editMovieEvent)="openEditorCard($event)">
     </app-info-card>
 <app-editor-card
     *ngIf="editorCardOpen"
     [selectedMovie]="selectedMovie"
     (closeCardEvent)="closeEditorCard()"
-    (addMovieEvent)="addMovie($event)">
+    (addMovieEvent)="addMovie($event)"
+    (updateMovieEvent)="updateMovie($event)">
     </app-editor-card>

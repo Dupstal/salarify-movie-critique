@@ -2,32 +2,36 @@
     <div id="background-overlay" (click)="closeCard()"></div>
     <div id="card-wrapper" [@entry]>
         <div id="card" [formGroup]="form">
-            <p id="title">Edit mode</p>
+            <p id="title">{{ editMode ? 'Edit movie' : 'Add new movie' }}</p>
             <hr class="top">
             <div id="short-texts">
-                <label>Title<span>*</span><input type="text" formControlName="name" placeholder="The lorem ipsum II."></label>
-                <label>Year<span>*</span><input type="text" formControlName="year" placeholder="2021"></label>
-                <label>Director<span>*</span><input type="text" formControlName="director" placeholder="James D. Williamson"></label>
-                <label>Stars<span>*</span><input type="text" formControlName="stars" placeholder="Alexis D. O'Connor, Ewan McGregor"></label>
-                <label>Writers<span>*</span><input type="text" formControlName="writers" placeholder="Doyle C. Berry"></label>
-                <label>Image URL<span>*</span><input type="text" formControlName="imgUrl" placeholder="Paste the link here"></label>
+                <label>{{ 'MOVIE_TITLE' | translate }}<span>*</span><input type="text" formControlName="name" placeholder="The Lorem Ipsum II."></label>
+                <label>{{ 'MOVIE_YEAR' | translate }}<span>*</span><input type="text" formControlName="year" placeholder="2021"></label>
+                <label>{{ 'MOVIE_DIRECTOR' | translate }}<span>*</span><input type="text" formControlName="director" placeholder="James D. Williamson"></label>
+                <label>{{ 'MOVIE_STARS' | translate }}<span>*</span><input type="text" formControlName="stars" placeholder="Alexis D. O'Connor, Ewan McGregor"></label>
+                <label>{{ 'MOVIE_WRITERS' | translate }}<span>*</span><input type="text" formControlName="writers" placeholder="Doyle C. Berry"></label>
+                <label>{{ 'MOVIE_IMAGE_URL' | translate }}<span>*</span><input type="text" formControlName="imgUrl" placeholder="Paste the link here"></label>
             </div>
-            <label>Review<span>*</span><textarea formControlName="review" placeholder="Your review goes here" rows="4"></textarea></label>
+            <label>{{ 'MOVIE_REVIEW' | translate }}<span>*</span><textarea formControlName="review" placeholder="Your review goes here" rows="4"></textarea></label>
             <hr>
             <div class="ratings">
-                <p id="ratings-label">Ratings</p>
-                <label>Directing<span>*</span><input type="number" formControlName="directing" min="1" max="5"></label>
-                <label>Acting<span>*</span><input type="number" formControlName="acting" min="1" max="5"></label>
-                <label>Costume Design<span>*</span><input type="number" formControlName="costumeDesign" min="1" max="5"></label>
-                <label>Editing<span>*</span><input type="number" formControlName="editing" min="1" max="5"></label>
-                <label>Music<span>*</span><input type="number" formControlName="music" min="1" max="5"></label>
-                <label>Visual Effects<span>*</span><input type="number" formControlName="visualEffects" min="1" max="5"></label>
-                <label>Screenplay<span>*</span><input type="number" formControlName="screenplay" min="1" max="5"></label>
+                <p id="ratings-label">{{ 'MOVIE_RATINGS' | translate }}</p>
+                <label>{{ 'MOVIE_DIRECTING' | translate }}<span>*</span><input type="number" formControlName="directing" min="1" max="5"></label>
+                <label>{{ 'MOVIE_ACTING' | translate }}<span>*</span><input type="number" formControlName="acting" min="1" max="5"></label>
+                <label>{{ 'MOVIE_COSTUME_DESIGN' | translate }}<span>*</span><input type="number" formControlName="costumeDesign" min="1" max="5"></label>
+                <label>{{ 'MOVIE_EDITING' | translate }}<span>*</span><input type="number" formControlName="editing" min="1" max="5"></label>
+                <label>{{ 'MOVIE_MUSIC' | translate }}<span>*</span><input type="number" formControlName="music" min="1" max="5"></label>
+                <label>{{ 'MOVIE_VISUAL_EFFECTS' | translate }}<span>*</span><input type="number" formControlName="visualEffects" min="1" max="5"></label>
+                <label>{{ 'MOVIE_SCREENPLAY' | translate }}<span>*</span><input type="number" formControlName="screenplay" min="1" max="5"></label>
             </div>
             <hr>
             <div id="action-bar">
-                <p class="button destructive" (click)="closeCard()">Close</p>
-                <p class="button" [style.opacity]="form.valid ? 1 : 0.1" (click)="addMovie()">Save</p>
+                <p class="button destructive" (click)="closeCard()">{{ 'MOVIE_CLOSE' | translate }}</p>
+                <p
+                    class="button"
+                    [class.disabled]="!form.valid"
+                    (click)="editMode ? updateMovie() : addMovie()"
+                    >{{ 'MOVIE_SAVE' | translate }}</p>
             </div>
         </div>
     </div>

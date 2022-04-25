@@ -21,9 +21,10 @@ export class EditorCardComponent implements OnInit {
   form: FormGroup;
   editMode: boolean = false;
   
-  @Input() selectedMovie!: Movie;
+  @Input() selectedMovie: Movie | undefined;
   @Output() closeCardEvent = new EventEmitter<undefined>();
   @Output() addMovieEvent = new EventEmitter<any>();
+  @Output() updateMovieEvent = new EventEmitter<any>();
 
   constructor() {
     this.form = new FormGroup({
@@ -47,6 +48,22 @@ export class EditorCardComponent implements OnInit {
   ngOnInit(): void {
     if (this.selectedMovie) {
       this.editMode = true;
+      this.form.setValue({
+        name: this.selectedMovie.name,
+        year: this.selectedMovie.year,
+        director: this.selectedMovie.director,
+        stars: this.selectedMovie.stars,
+        writers: this.selectedMovie.writers,
+        imgUrl: this.selectedMovie.imgUrl,
+        review: this.selectedMovie.review,
+        directing: this.selectedMovie.ratings.directing,
+        acting: this.selectedMovie.ratings.acting,
+        costumeDesign: this.selectedMovie.ratings.costumeDesign,
+        editing: this.selectedMovie.ratings.editing,
+        music: this.selectedMovie.ratings.music,
+        visualEffects: this.selectedMovie.ratings.visualEffects,
+        screenplay: this.selectedMovie.ratings.screenplay
+      });
     }
   }
 
@@ -60,15 +77,18 @@ export class EditorCardComponent implements OnInit {
   addMovie() {
     if (this.form.valid) {
       this.addMovieEvent.emit(this.form.value);
-    } else {
-      const controls = this.form.controls;
-        for (const name in controls) {
-            if (controls[name].invalid) {
-                console.log('invalid control: ' + name);
-            }
-        }
     }
   }
+
+  updateMovie() {
+    if (this.form.valid) {
+      this.updateMovieEvent.emit({
+        id: this.selectedMovie!.id,
+        ...this.form.value
+      });
+    }
+  }
+
 
   closeCard() {
     if (this.form.dirty) {
@@ -77,5 +97,10 @@ export class EditorCardComponent implements OnInit {
         this.closeCardEvent.emit(undefined);
       }
     } else this.closeCardEvent.emit(undefined);
+  }
+
+  ngOnDestroy() {
+    this.form.reset();
+    this.editMode = false;
   }
 }

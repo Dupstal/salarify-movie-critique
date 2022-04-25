@@ -1,3 +1,5 @@
+@import '~src/app/shared/styles/variables.scss';
+
 #container {
     max-height: 350px;
     display: flex;
@@ -20,7 +22,7 @@
         font-weight: 400;
         font-size: 13px;
         line-height: 21px;
-        color: #FFFFFF;
+        color: white;
         margin: 0;
     }
     #data {
@@ -32,7 +34,7 @@
             font-weight: 400;
             font-size: 13px;
             line-height: 21px;
-            color: #9B9B9B;
+            color: $grey;
         }
     }
 }

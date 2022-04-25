@@ -1,6 +1,5 @@
 import { trigger, transition, style, animate } from '@angular/animations';
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Movie } from '../../models/movie';
 
 export const ENTRY_ANIMATION = trigger("entry", [
@@ -18,8 +17,9 @@ export const ENTRY_ANIMATION = trigger("entry", [
 })
 export class InfoCardComponent implements OnInit {
   
-  @Input() selectedMovie!: Movie;
+  @Input() selectedMovie: Movie | undefined;
   @Output() closeCardEvent = new EventEmitter<undefined>();
+  @Output() editMovieEvent = new EventEmitter<Movie>();
   @Output() deleteMovieEvent = new EventEmitter<number>();
 
   constructor() {
@@ -37,8 +37,13 @@ export class InfoCardComponent implements OnInit {
 
   deleteMovie(id: number) {
     if (confirm('Are you sure you want to delete this movie?')) {
-      this.deleteMovieEvent.emit(this.selectedMovie.id);
+      this.deleteMovieEvent.emit(this.selectedMovie!.id);
     }
+  }
+
+  editMovie(movie: Movie) {
+    this.editMovieEvent.emit(movie);
+    this.closeCard();
   }
 
   closeCard() {

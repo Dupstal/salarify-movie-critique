@@ -16,20 +16,28 @@ export class MovieListComponent implements OnInit {
   searchTerm: string = '';
   infoCardOpen: boolean = false;
   editorCardOpen: boolean = false;
-  selectedMovie!: Movie;
+  selectedMovie!: Movie | undefined;
 
-  subscription: Subscription;
+  searchTermSubscription: Subscription;
+  openMovieEditorPingSubscription: Subscription;
 
   constructor(
     private readonly moviesService: MoviesService
   ) {
     this.movies$ = this.moviesService.getMovies(0, '');
     this.moviesService.getNumberOfPages().pipe(take(1)).subscribe(numberOfPages => this.numberOfPages = numberOfPages);
-    this.subscription = this.moviesService.currentSearchTerm
+    this.searchTermSubscription = this.moviesService.currentSearchTerm
       .subscribe(searchTerm => {
         this.searchTerm = searchTerm;
         this.movies$ = this.moviesService.getMovies(this.currentPage, searchTerm);
       });
+
+    this.openMovieEditorPingSubscription = this.moviesService.currentOpenMovieEditorPingSource
+      .subscribe(open => {
+      if (open) {
+        this.openEditorCard();
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -66,6 +74,8 @@ export class MovieListComponent implements OnInit {
   openEditorCard(movie?: Movie): void {
     if (movie) {
       this.selectedMovie = movie;
+    } else {
+      this.selectedMovie = undefined;
     }
     this.editorCardOpen = true;
   }
@@ -82,6 +92,13 @@ export class MovieListComponent implements OnInit {
     });
   }
 
+  updateMovie(movie: Movie): void {
+    this.moviesService.updateMovie(movie).pipe(take(1)).subscribe(() => {
+      this.movies$ = this.moviesService.getMovies(this.currentPage, this.searchTerm);
+      this.closeEditorCard();
+    });
+  }
+
   deleteMovie(id: number) {
     this.moviesService.deleteMovie(id).pipe(take(1)).subscribe(() => {
       this.movies$ = this.moviesService.getMovies(this.currentPage, this.searchTerm);
@@ -95,6 +112,7 @@ export class MovieListComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.searchTermSubscription.unsubscribe();
+    this.openMovieEditorPingSubscription.unsubscribe();
   }
 }

@@ -3,13 +3,13 @@
         <div id="col-1">
             <p id="logo">SCREENSCORE</p>
             <div class="divider"></div>
-            <input type="text" placeholder="Search for a movie" #searchInput
+            <input type="text" [placeholder]="'SEARCH_PROMPT' | translate" #searchInput
                 (keyup)="searchTermChange.next(searchInput.value)" />
         </div>
         <div id="col-2">
-            <p>Home</p>
-            <p>About</p>
-            <p>Login</p>
+            <p (click)="changeLanguage('hu')">HU</p>
+            <p (click)="changeLanguage('en')">EN</p>
+            <p (click)="openMovieEditor()">{{ 'ADD_MOVIE' | translate }}</p>
         </div>
     </div>
 </div>
