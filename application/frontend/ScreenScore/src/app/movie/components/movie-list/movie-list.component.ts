@@ -1,12 +1,20 @@
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subscription, take } from 'rxjs';
 import { Movie } from '../../models/movie';
 import { MoviesService } from '../../services/movies.service';
 
+const listAnimation = trigger("listAnimation", [
+  transition("* <=> *", [
+      query(":enter", [style({ opacity: 0 }), stagger("80ms", animate("600ms ease-out", style({ opacity: 1 })))], { optional: true })
+  ])
+]);
+
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.scss']
+  styleUrls: ['./movie-list.component.scss'],
+  animations: [listAnimation]
 })
 export class MovieListComponent implements OnInit {
 

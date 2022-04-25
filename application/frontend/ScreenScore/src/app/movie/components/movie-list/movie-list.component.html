@@ -1,7 +1,7 @@
-<div id="container">
-    <div id="card-container">
+<div id="container" *ngIf="(movies$ | async) as movies">
+    <div id="card-container" [@listAnimation]="movies.length">
         <app-movie-card
-            *ngFor="let movie of movies$ | async"
+            *ngFor="let movie of movies"
             [movie]="movie"
             (click)="openInfoCard(movie)"></app-movie-card>
     </div>
