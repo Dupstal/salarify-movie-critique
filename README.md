@@ -1,3 +1,35 @@
+![enter image description here](https://i.imgur.com/06Dhh2R.png)
+
+# Welcome to SCREENSCORE™!
+
+> Being a movie critique is a hard job in itself, so I have made this simple website to keep track of all the movies.
+
+## Features
+The application lets users **add**, **edit**, **list** and **remove** movies from it's own database. Users can basically add an infinite number of movies which makes it hard to navigate after a while. To solve this problem, I have implemented search functionality and pagination to help the user manage the database much more easily. If the critique comes from a different country, let's say 🇭🇺 Hungary, they have the ability to translate the application via a simple click.
+
+## Using the application
+The system consists of two parts, the front end, which is written in **Angular**, and the back end, which is *due to time constraint* a **Node.JS/Express** combination.
+
+#### To fire up the back end:
+ 1. Clone the GitHub repository.
+ 2. Head into the **/application/backend** folder.
+ 3. Open a terminal and run **npm install**, or simply **npm i**.
+ 4. Start the application with **npm run start**.
+ 5. In case of success, you should be greeted with a huge SCREENSCORE logo.
+ 6. You can test out the back end at **http://localhost:3000/api/movie** for example.
+
+#### To start the front end
+
+ 1. Open a different terminal.
+ 2. Move into **/application/frontend/ScreenScore**
+ 3. Run **npm install**.
+ 4. Start the website with **ng serve -o**.
+ 5. After it boots up, the application should be running in your default browser.
+
+-----
+
+Original README:
+
 # Salarify Movie Rater
 
 ### Summary
