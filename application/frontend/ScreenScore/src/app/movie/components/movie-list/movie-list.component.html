@@ -1,0 +1,37 @@
+<div id="container" *ngIf="(movies$ | async) as movies">
+    <div id="card-container" [@listAnimation]="movies.length">
+        <app-movie-card
+            *ngFor="let movie of movies"
+            [movie]="movie"
+            (click)="openInfoCard(movie)"></app-movie-card>
+    </div>
+    <div id="pagination-container">
+        <p [class.disabled]="currentPage === 0"
+            (click)="previousPage()">
+            {{ 'PREVIOUS' | translate }}</p>
+        <div class="divider"></div>
+        <p class="pagination-number"
+            *ngFor="let page of numberOfPages | getPagesLength"
+            [class.active]="page === currentPage + 1"
+            (click)="goToPage(page)"
+        >{{ page }}</p>
+        <div class="divider"></div>
+        <p [class.disabled]="currentPage === numberOfPages - 1"
+            (click)="nextPage()">
+            {{ 'NEXT' | translate }}</p>
+    </div>
+</div>
+<app-info-card
+    *ngIf="infoCardOpen"
+    [selectedMovie]="selectedMovie"
+    (closeCardEvent)="closeInfoCard()"
+    (deleteMovieEvent)="deleteMovie($event)"
+    (editMovieEvent)="openEditorCard($event)">
+    </app-info-card>
+<app-editor-card
+    *ngIf="editorCardOpen"
+    [selectedMovie]="selectedMovie"
+    (closeCardEvent)="closeEditorCard()"
+    (addMovieEvent)="addMovie($event)"
+    (updateMovieEvent)="updateMovie($event)">
+    </app-editor-card>
