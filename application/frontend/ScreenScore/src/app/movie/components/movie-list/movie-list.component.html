@@ -23,6 +23,7 @@
 </div>
 <app-info-card
     *ngIf="infoCardOpen"
-    (closeInfoCardEvent)="closeInfoCard($event)"
     [selectedMovie]="selectedMovie"
+    (closeInfoCardEvent)="closeInfoCard()"
+    (deleteMovieEvent)="deleteMovie($event)">
     ></app-info-card>

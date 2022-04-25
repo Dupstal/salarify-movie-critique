@@ -24,7 +24,7 @@ export class MovieListComponent implements OnInit {
   ) {
     this.movies$ = this.moviesService.getMovies(0, '');
     this.moviesService.getNumberOfPages().pipe(take(1)).subscribe(numberOfPages => this.numberOfPages = numberOfPages);
-    this.subscription = this.moviesService.currentsearchTerm
+    this.subscription = this.moviesService.currentSearchTerm
       .subscribe(searchTerm => {
         this.searchTerm = searchTerm;
         this.movies$ = this.moviesService.getMovies(this.currentPage, searchTerm);
@@ -58,15 +58,23 @@ export class MovieListComponent implements OnInit {
     this.infoCardOpen = true;
   }
 
-  closeInfoCard(movie?: Movie): void {
-    if (movie) {
-      this.movies$ = this.moviesService.getMovies(this.currentPage, this.searchTerm);
-    }
+  closeInfoCard(): void {
     this.infoCardOpen = false;
+  }
+
+  deleteMovie(id: number) {
+    this.moviesService.deleteMovie(id).pipe(take(1)).subscribe(() => {
+      this.movies$ = this.moviesService.getMovies(this.currentPage, this.searchTerm);
+      this.closeInfoCard();
+      this.refreshNumberOfPages();
+    });
+  }
+
+  refreshNumberOfPages() {
+    this.moviesService.getNumberOfPages().pipe(take(1)).subscribe(numberOfPages => this.numberOfPages = numberOfPages);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }

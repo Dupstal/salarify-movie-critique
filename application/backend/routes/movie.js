@@ -5,5 +5,6 @@ const router = express.Router();
 router.get("/", MovieController.getMovies);
 router.get("/pages", MovieController.getNumberOfPages);
 router.get("/:id", MovieController.getMovie);
+router.delete("/:id", MovieController.deleteMovie);
 
 module.exports = router;

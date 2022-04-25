@@ -11,9 +11,8 @@ export class MoviesService {
   
   apiUrl = environment.apiUrl;
   
-  
   private searchTermSource = new BehaviorSubject('');
-  currentsearchTerm = this.searchTermSource.asObservable();
+  currentSearchTerm = this.searchTermSource.asObservable();
   
   constructor(
     private readonly http: HttpClient
@@ -21,6 +20,10 @@ export class MoviesService {
     
   getMovies(page: number, searchTerm: string): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.apiUrl + '/movie', { params: { page, searchTerm } });
+  }
+
+  deleteMovie(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(this.apiUrl + '/movie/' + id);
   }
 
   getNumberOfPages(): Observable<number> {

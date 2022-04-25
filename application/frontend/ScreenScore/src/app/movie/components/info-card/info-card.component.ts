@@ -22,7 +22,8 @@ export class InfoCardComponent implements OnInit {
   editMode: boolean = false;
   
   @Input() selectedMovie!: Movie;
-  @Output() closeInfoCardEvent = new EventEmitter<Movie | undefined>();
+  @Output() closeInfoCardEvent = new EventEmitter<undefined>();
+  @Output() deleteMovieEvent = new EventEmitter<number>();
 
   constructor() {
     this.form = new FormGroup({
@@ -39,11 +40,17 @@ export class InfoCardComponent implements OnInit {
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {
     if (event.key === "Escape") {
-      this.closeEditor();
+      this.closeCard();
     }
   }
 
-  closeEditor() {
+  deleteMovie(id: number) {
+    if (confirm('Are you sure you want to delete this movie?')) {
+      this.deleteMovieEvent.emit(this.selectedMovie.id);
+    }
+  }
+
+  closeCard() {
     if (this.form.dirty) {
       if (confirm('You have unsaved changes. Are you sure you want to close?')) {
         this.form.reset();

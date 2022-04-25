@@ -1,5 +1,5 @@
 <div class="container">
-    <div id="background-overlay" (click)="closeEditor()"></div>
+    <div id="background-overlay" (click)="closeCard()"></div>
     <div id="card-wrapper" [@entry]>
         <div id="card">
             <div id="header">
@@ -36,8 +36,8 @@
             <hr class="bottom">
             <div id="action-bar">
                 <p class="button">Edit</p>
-                <p class="button destructive">Delete</p>
-                <p class="button destructive">Close</p>
+                <p class="button destructive" (click)="deleteMovie(selectedMovie.id)">Delete</p>
+                <p class="button destructive" (click)="closeCard()">Close</p>
             </div>
         </div>
     </div>

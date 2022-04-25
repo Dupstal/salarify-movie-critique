@@ -42,6 +42,17 @@ exports.getMovie = async (req, res, next) => {
   }
 }
 
+exports.deleteMovie = async (req, res, next) => {
+  try {
+    const id = +req.params.id;
+    movies = movies.filter(movie => movie.id !== id);
+
+    return res.status(204).json(true);
+  } catch (error) {
+    return res.status(500).send();
+  }
+};
+
 exports.getNumberOfPages = async (req, res, next) => {
   try {
     const numberOfPages = Math.ceil(movies.length / 6);
